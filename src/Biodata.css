@@ -1,0 +1,76 @@
+/* Unique Styling for Biodata Component */
+.unique-biodata-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 0.3rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  min-height: 100vh;
+  margin-top: 0.3rem;
+}
+
+.biodata-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+.unique-biodata-card {
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.unique-biodata-card:hover {
+  transform: translateY(-5px);
+}
+
+.biodata-name {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.unique-biodata-card p {
+  font-size: 1rem;
+  color: #495057;
+  margin: 0px 0;
+  line-height: 1.6;
+}
+
+.unique-biodata-card p strong {
+  color: #212529;
+}
+
+@media (max-width: 600px) {
+  .unique-biodata-card {
+    padding: 0.4rem;
+    max-width: 96%;
+  }
+
+  .biodata-title {
+    font-size: 1.8rem;
+  }
+
+  .biodata-name {
+    font-size: 1.3rem;
+  }
+
+  .unique-biodata-card p {
+    font-size: 0.95rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+ul {
+  margin: 4px;
+}
