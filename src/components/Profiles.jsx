@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Profiles.css";
+import api from "../api/api";
 
 const API_BASE = "http://192.168.1.198:5001";
 

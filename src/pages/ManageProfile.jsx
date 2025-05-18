@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProfileCard from "../components/ProfileCard"; // adjust path if needed
 import "./NewProfile.css";
-const API_BASE = "http://192.168.1.198:5001";
+import { BASE_URL } from "../api/api";
+const API_BASE = BASE_URL;
 
 const ManageProfiles = () => {
   const [profiles, setProfiles] = useState([]);

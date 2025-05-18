@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./ProfileDetail.css";
-const API_BASE = "http://192.168.1.198:5001"; // your API base
+import { BASE_URL } from "../api/api";
+const API_BASE = BASE_URL; // your API base
 
 const ProfileDetail = () => {
   const { id } = useParams();

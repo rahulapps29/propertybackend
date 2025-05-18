@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 
-const API_BASE = "http://192.168.1.198:5001";
+import api from "../api/api";
 
 const ProfileCard = ({ profile, handleEdit, handleDelete, fetchProfiles }) => {
   const handleImageUpload = async (e) => {
@@ -17,7 +17,7 @@ const ProfileCard = ({ profile, handleEdit, handleDelete, fetchProfiles }) => {
     }
 
     try {
-      await axios.post(`${API_BASE}/profiles/${profile._id}/images`, formData, {
+      await api.post(`/profiles/${profile._id}/images`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Images uploaded");
