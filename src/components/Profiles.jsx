@@ -6,8 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Profiles.css";
 import api from "../api/api";
-
-const API_BASE = "http://192.168.1.198:5001";
+import { BASE_URL } from "../api/api";
+const API_BASE = BASE_URL;
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);

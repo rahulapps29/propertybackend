@@ -1,7 +1,7 @@
 // src/api.js
 import axios from "axios";
 
-export const BASE_URL = "http://192.168.1.198:5001";
+export const BASE_URL = "https://rahulprofile.algoapp.in";
 
 const api = axios.create({
   baseURL: BASE_URL, // ✅ using the variable here
