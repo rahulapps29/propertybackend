@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Profiles.css";
-
+import { Link } from "react-router-dom";
 const API_BASE = "http://192.168.1.198:5001";
 
 const Profiles = () => {
@@ -87,8 +87,11 @@ const ProfileCard = ({ profile, id }) => {
         </div>
       )}
 
-      <h2>{name || "Not specified"}</h2>
-      <h4>{email || "Not specified"}</h4>
+      <h2>
+        <Link to={`/profile/${profile._id}`} className="text-decoration-none">
+          {name || "Not specified"}
+        </Link>
+      </h2>
     </div>
   );
 };

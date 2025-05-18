@@ -4,7 +4,7 @@ import "./App.css";
 import axios from "axios";
 import NewProfile from "./pages/NewProfile.jsx";
 import Profiles from "./components/Profiles.jsx";
-
+import ProfileDetail from "./pages/ProfileDetail.jsx"; // Add this
 const App = () => {
   const location = useLocation();
 
@@ -20,6 +20,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Profiles />} />
         <Route path="/new" element={<NewProfile />} />
+        <Route path="/profile/:id" element={<ProfileDetail />} />{" "}
+        {/* Add this */}
       </Routes>
     </div>
   );
