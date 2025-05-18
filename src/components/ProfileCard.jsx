@@ -39,7 +39,7 @@ const ProfileCard = ({ profile, handleEdit, handleDelete, fetchProfiles }) => {
           <div key={i} className="image-wrapper">
             <img src={`${API_BASE}${img}`} alt={`img-${i}`} className="image" />
             <a href={`${API_BASE}${img}`} download className="download-button">
-              Download
+              FullScreen
             </a>
           </div>
         ))}
