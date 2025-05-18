@@ -20,24 +20,61 @@ const ProfileDetail = () => {
   return (
     <div className="container mt-4">
       <h2 className="mb-3">{profile.name || "Unnamed Profile"}</h2>
-      <p>
-        <strong>Email:</strong> {profile.email || "N/A"}
-      </p>
 
+      {/* Carousel for images */}
       {profile.images?.length > 0 && (
-        <div className="row mb-4">
-          {profile.images.map((img, index) => (
-            <div className="col-md-4 mb-3" key={index}>
-              <img
-                src={`${API_BASE}${img}`}
-                alt={`profile-img-${index}`}
-                className="img-fluid rounded"
-              />
-            </div>
-          ))}
+        <div
+          id={`carousel-${id}`}
+          className="carousel slide mb-4"
+          data-bs-ride="carousel"
+        >
+          <div className="carousel-inner">
+            {profile.images.map((img, index) => (
+              <div
+                key={index}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
+              >
+                <img
+                  src={`${API_BASE}${img}`}
+                  alt={`profile-img-${index}`}
+                  className="d-block w-100 rounded profile-img"
+                />
+              </div>
+            ))}
+          </div>
+
+          {profile.images.length > 1 && (
+            <>
+              <button
+                className="carousel-control-prev"
+                type="button"
+                data-bs-target={`#carousel-${id}`}
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button
+                className="carousel-control-next"
+                type="button"
+                data-bs-target={`#carousel-${id}`}
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Next</span>
+              </button>
+            </>
+          )}
         </div>
       )}
 
+      {/* Profile Info */}
       <div className="row">
         <div className="col-md-6">
           <ul className="list-group">
