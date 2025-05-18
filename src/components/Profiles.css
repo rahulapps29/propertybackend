@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: black; */
+  /* color: #fff; */
 }
 
 body {
@@ -31,6 +33,7 @@ body {
 .carousel-img {
   max-height: 560px;
   object-fit: cover;
+  object-position: top;
   border-radius: 5px;
 }
 

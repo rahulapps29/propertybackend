@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-
+import "./ProfileDetail.css";
 const API_BASE = "http://192.168.1.198:5001"; // your API base
 
 const ProfileDetail = () => {
@@ -18,7 +18,7 @@ const ProfileDetail = () => {
   if (!profile) return <p className="text-center mt-5">Loading profile...</p>;
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 narrow-container">
       <h2 className="mb-3">{profile.name || "Unnamed Profile"}</h2>
 
       {/* Carousel for images */}
@@ -99,14 +99,14 @@ const ProfileDetail = () => {
             <li className="list-group-item">
               <strong>Education:</strong> {profile.education || "N/A"}
             </li>
-            <li className="list-group-item">
-              <strong>Income:</strong> {profile.income || "N/A"}
-            </li>
           </ul>
         </div>
 
         <div className="col-md-6">
           <ul className="list-group">
+            <li className="list-group-item">
+              <strong>Income:</strong> {profile.income || "N/A"}
+            </li>
             <li className="list-group-item">
               <strong>Father's Number:</strong> {profile.fatherNo || "N/A"}
             </li>
@@ -125,9 +125,9 @@ const ProfileDetail = () => {
             <li className="list-group-item">
               <strong>Citizenship:</strong> {profile.Citizen || "N/A"}
             </li>
-            <li className="list-group-item">
+            {/* <li className="list-group-item">
               <strong>Mongo ID:</strong> {profile._id}
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
