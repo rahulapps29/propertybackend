@@ -1,26 +1,48 @@
+// Profiles.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Profiles.css";
-import { Link } from "react-router-dom";
+
 const API_BASE = "http://192.168.1.198:5001";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${API_BASE}/profiles`)
-      .then((res) => setProfiles(res.data))
-      .catch(() => setProfiles([]));
+      .then((res) => {
+        setProfiles(res.data);
+        setFiltered(res.data);
+      })
+      .catch(() => {
+        setProfiles([]);
+        setFiltered([]);
+      });
   }, []);
+
+  useEffect(() => {
+    const handleSearch = (e) => {
+      const query = e.detail.toLowerCase();
+      const results = profiles.filter((p) =>
+        (p.name || "").toLowerCase().includes(query)
+      );
+      setFiltered(results);
+    };
+
+    window.addEventListener("search-input", handleSearch);
+    return () => window.removeEventListener("search-input", handleSearch);
+  }, [profiles]);
 
   return (
     <div className="profile-list container mt-4">
       <h2 className="text-center mb-4">All Profiles</h2>
       <div className="row g-4">
-        {profiles.map((profile, i) => (
+        {filtered.map((profile, i) => (
           <div className="col-md-4" key={profile._id}>
             <ProfileCard profile={profile} id={i} />
           </div>
@@ -64,10 +86,7 @@ const ProfileCard = ({ profile, id }) => {
                 data-bs-target={`#carousel-${id}`}
                 data-bs-slide="prev"
               >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                />
+                <span className="carousel-control-prev-icon" />
                 <span className="visually-hidden">Previous</span>
               </button>
               <button
@@ -76,10 +95,7 @@ const ProfileCard = ({ profile, id }) => {
                 data-bs-target={`#carousel-${id}`}
                 data-bs-slide="next"
               >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                />
+                <span className="carousel-control-next-icon" />
                 <span className="visually-hidden">Next</span>
               </button>
             </>
