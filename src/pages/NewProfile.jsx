@@ -1,14 +1,34 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProfileCard from "../components/ProfileCard"; // adjust path if needed
-
-const API_BASE = "http://localhost:5001";
+import "./NewProfile.css";
+const API_BASE = "http://192.168.1.198:5001";
 
 const ManageProfiles = () => {
   const [profiles, setProfiles] = useState([]);
   const [editingProfile, setEditingProfile] = useState(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const initialForm = {
+    name: "",
+    email: "",
+    Platform: "",
+    pid: "",
+    height: "",
+    Age: "",
+    dob: "",
+    occupation: "",
+    education: "",
+    income: "",
+    fatherNo: "",
+    GirlNo: "",
+    Place: "",
+    Food: "",
+    Hometown: "",
+    Citizen: "",
+    // id: "",
+  };
+
+  const [form, setForm] = useState(initialForm);
+
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -27,25 +47,24 @@ const ManageProfiles = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email) return alert("Fill name and email");
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    files.forEach((file) => formData.append("images", file));
-
     try {
       if (editingProfile) {
-        await axios.put(`${API_BASE}/profiles/${editingProfile._id}`, {
-          name,
-          email,
-        });
+        // Only send JSON for update
+        await axios.put(`${API_BASE}/profiles/${editingProfile._id}`, form);
         alert("Profile updated!");
       } else {
+        const formData = new FormData();
+        Object.entries(form).forEach(([key, value]) =>
+          formData.append(key, value)
+        );
+        files.forEach((file) => formData.append("images", file));
+
         await axios.post(`${API_BASE}/profiles`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         alert("Profile created!");
       }
+
       resetForm();
       fetchProfiles();
     } catch (err) {
@@ -56,10 +75,10 @@ const ManageProfiles = () => {
 
   const resetForm = () => {
     setEditingProfile(null);
-    setName("");
-    setEmail("");
+    setForm(initialForm);
     setFiles([]);
-    document.getElementById("fileInput").value = "";
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput) fileInput.value = "";
   };
 
   const handleDelete = async (id) => {
@@ -71,11 +90,13 @@ const ManageProfiles = () => {
       console.error(err);
     }
   };
-
   const handleEdit = (profile) => {
     setEditingProfile(profile);
-    setName(profile.name);
-    setEmail(profile.email);
+    const filled = {};
+    Object.keys(initialForm).forEach((key) => {
+      filled[key] = profile[key] || "";
+    });
+    setForm(filled);
     setFiles([]);
   };
 
@@ -83,26 +104,29 @@ const ManageProfiles = () => {
     <div className="container">
       <h2>{editingProfile ? "Edit Profile" : "Add New Profile"}</h2>
       <form onSubmit={handleSubmit} className="form">
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          id="fileInput"
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={(e) => setFiles(Array.from(e.target.files))}
-        />
+        <div className="form-grid">
+          {Object.keys(initialForm).map((field) => (
+            <input
+              key={field}
+              type="text"
+              name={field}
+              placeholder={field}
+              value={form[field]}
+              onChange={(e) => setForm({ ...form, [field]: e.target.value })}
+            />
+          ))}
+        </div>
+
+        {!editingProfile && (
+          <input
+            id="fileInput"
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={(e) => setFiles(Array.from(e.target.files))}
+          />
+        )}
+
         <button type="submit">
           {editingProfile ? "Update Profile" : "Create Profile"}
         </button>

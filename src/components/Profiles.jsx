@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Profiles.css";
 
-const API_BASE = "http://localhost:5001";
+const API_BASE = "http://192.168.1.198:5001";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);

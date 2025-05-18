@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 
-const API_BASE = "http://localhost:5001";
+const API_BASE = "http://192.168.1.198:5001";
 
 const ProfileCard = ({ profile, handleEdit, handleDelete, fetchProfiles }) => {
   const handleImageUpload = async (e) => {

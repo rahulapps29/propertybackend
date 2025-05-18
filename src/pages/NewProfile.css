@@ -1,0 +1,12 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 1rem; /* Space between fields */
+  margin-bottom: 1rem;
+}
+
+.form-grid input {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
