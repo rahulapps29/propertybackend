@@ -95,14 +95,13 @@ const ManageProfiles = () => {
           placeholder="Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
         <input
           id="fileInput"
           type="file"
           multiple
           accept="image/*"
-          onChange={(e) => setFiles([...e.target.files])}
+          onChange={(e) => setFiles(Array.from(e.target.files))}
         />
         <button type="submit">
           {editingProfile ? "Update Profile" : "Create Profile"}
