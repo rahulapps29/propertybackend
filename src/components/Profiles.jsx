@@ -88,7 +88,7 @@ const ProfileCard = ({ profile, id }) => {
       )}
 
       <h2>
-        <Link to={`/profile/${profile._id}`} className="text-decoration-none">
+        <Link to={`/profile/${profile._id}`} className="DetailLink">
           {name || "Not specified"}
         </Link>
       </h2>

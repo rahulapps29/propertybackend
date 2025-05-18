@@ -41,11 +41,48 @@ body {
   margin-top: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
+  color: black;
 }
 
 .book h4 {
-  color: #617d98;
+  /* color: #617d98; */
   font-size: 0.85rem;
   margin-top: 0.5rem;
   letter-spacing: 1px;
+}
+
+.DetailLink {
+  text-decoration: none;
+  color: #2c3e50; /* Deep neutral for professional look */
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.DetailLink:hover {
+  color: #0d6efd; /* Bootstrap blue on hover */
+  text-decoration: underline;
+}
+
+.DetailLink {
+  position: relative;
+  color: #2c3e50;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.DetailLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background-color: #0d6efd;
+  transition: width 0.3s ease;
+}
+
+.DetailLink:hover::after {
+  width: 100%;
 }
