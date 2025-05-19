@@ -4,6 +4,10 @@ import axios from "axios";
 
 import api from "../api/api";
 
+import { BASE_URL } from "../api/api";
+
+const API_BASE = BASE_URL;
+
 const ProfileCard = ({ profile, handleEdit, handleDelete, fetchProfiles }) => {
   const handleImageUpload = async (e) => {
     e.preventDefault();
